@@ -1,0 +1,85 @@
+<body>
+   <h1>Results for FUTBIN Squad:
+      <a target="_blank" href="{{squadLink}}">{{squadLink}}</a></h1>
+   <div></div>
+   <button> <a href="/"></a>Analyse Another SBC</button>
+   <br></br>
+   <table class ="table output-table">
+      <tr class = "player-info">
+        <th>Player Name</th>
+        <th>Player Club</th>
+        <th>Player League</th>
+        <th>Player Nation</th>
+        <th>Player Revision</th>
+        <th>Player Level</th>
+        <th>Player Position</th>
+        <th>Player Count</th>
+        <th>Player FUTBIN URL</th>
+      </tr>
+      <tbody id ="outputTable">
+      </tbody>
+    </table>
+</body>
+ <script>
+   var myArray = {{value|safe }};
+
+ function buildTable(data){
+   var table = document.getElementById("outputTable")
+
+   for(var i = 0; i<data.length; i++){
+     var row = `<tr>
+                    <td>${data[i].name}</td>
+                    <td>${data[i].club}</td>
+                    <td>${data[i].league}</td>
+                    <td>${data[i].nation}</td>
+                    <td>${data[i].revision}</td>
+                    <td>${data[i].level}</td>
+                    <td>${data[i].position}</td>
+                    <td>${data[i].playerCount}</td>
+                    <td>
+                    <a target="_blank" href="https://www.futbin.com${data[i].futBinURL}">
+                    https://www.futbin.com${data[i].futBinURL}</a></td>
+               </tr>`
+       table.innerHTML += row
+   }
+ }
+    buildTable(myArray)
+</script>
+
+<style>
+
+.table{
+      border-collapse: collapse;
+      border:1px solid;
+   }
+
+   .table th{
+      font-size: 36pxs;
+      background-color: #4A91F2;
+      border: 1px solid black;
+      text-align: center;
+      vertical-align: middle;
+      width: 10px;
+      white-space: nowrap;
+      padding: 12px 15px;
+      text-transform:uppercase;
+      font-family: Gill Sans / Gill Sans MT, sans-serif;
+   }
+
+   .table td{
+      border: 1px solid black;
+      padding: 12px 15px;
+      text-align: center;
+      vertical-align: middle;
+      font-family: Gill Sans / Gill Sans MT, sans-serif;
+   }
+   body {
+         margin-top: 5px;
+         margin-bottom: 5px;
+         margin-right: 5px;
+         margin-left: 25px;
+   }
+   .h1{
+       font-family: Gill Sans / Gill Sans MT, sans-serif;
+   }
+</style>
