@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V3</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icons/favicon.ico')}}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/iconic/css/material-design-iconic-font.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/animate/animate.css')}}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/animsition/css/animsition.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/select2/select2.min.css')}}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.css')}}">
+<!--===============================================================================================-->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/util.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<section id="players_result">
+		<div class="container">
+			<div class="result_link">
+				<h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">Results for FUTBIN Squad:</h1>
+				<a href="https://www.futbin.com/squad-building-challenges/ALL/72/OM%20v%20Girondins%20de%20Bx" class="site_link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">https://www.futbin.com/squad-building-challenges/ALL/72/OM%20v%20Girondins%20de%20Bx</a>
+				<a href="#" class="button_type1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">Analyse Another SBC</a>
+			</div>
+		</div>
+	</section>
+
+	<section id="pricing-table">
+         <div class="container">
+            <div class="row">
+               {% for  singleResult in results %}
+               <div class="col-md-3 col-sm-4 mb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                  <div class="pricingTable10" >
+                     <div class="pricingTable-header">
+                        <h3 class="heading">PLAYER NAME :</h3>
+                       	<h4>{{singleResult['name']}}</h4>
+                     </div>
+                     <div class="pricing-content">
+                     	<ul>
+                     		<li>
+                     			<div class="player_detail">
+		                        	<p>PLAYER CLUB:</p>
+		                        	<h5>{{singleResult['club']}}</h5>
+		                        </div>
+                     		</li>
+                     		<li>
+                     			<div class="player_detail">
+                        	<p>PLAYER LEAGUE</p>
+                        	<h5>{{singleResult['league']}}</h5>
+                        </div>
+                     		</li>
+                     		<li>
+                     			<div class="player_detail">
+                        	<p>PLAYER NATION</p>
+                        	<h5>{{singleResult['nation']}}</h5>
+                        </div>
+                     		</li>
+                     		<li>
+                     			<div class="player_detail">
+                        	<p>PLAYER REVISION	</p>
+                        	<h5>{{singleResult['revision']}}</h5>
+                        </div>
+                     		</li>
+                     		<li>
+                     			<div class="player_detail">
+                        	<p>PLAYER LEVEL	</p>
+                        	<h5>{{singleResult['level']}}</h5>
+                        </div>
+                     		</li>
+                     		<li>
+                     			 <div class="player_detail">
+                        	<p>PLAYER POSITION	</p>
+                        	<h5>{{singleResult['position']}}</h5>
+                        </div>
+                     		</li>
+                     		<li>
+                     			<div class="player_detail">
+                        	<p>PLAYER COUNT</p>
+                        	<h5>{{singleResult['playerCount']}}</h5>
+                        </div>
+                     		</li>
+                     	</ul>
+                        <div class="player_link">
+                        	<p>PLAYER FUTBIN URL</p>
+                        	<a href="https://www.futbin.com/21/player/1207/benjamin-andre">{{singleResult['futBinURL']}}</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               {% endfor %}
+
+               
+               
+
+
+               
+               
+            </div>
+         </div>
+      </section>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/animsition/js/animsition.min.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/bootstrap/js/popper.js')}}"></script>
+	<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/select2/select2.min.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/daterangepicker/moment.min.js')}}"></script>
+	<script src="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/countdowntime/countdowntime.js')}}"></script>
+<!--===============================================================================================-->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='js/main.js')}}"></script>
+	<script>
+		 AOS.init();
+	</script>
+
+</body>
+</html>

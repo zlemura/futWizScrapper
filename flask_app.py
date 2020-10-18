@@ -11,7 +11,7 @@ from processing import find_squad_player_links
 from processing import add_players_to_list
 
 
-app = Flask(__name__, template_folder='/home/WillingCheetah3713/mysite')
+app = Flask(__name__)
 app.config["DEBUG"] = True
 
 @app.route("/", methods=["GET", "POST"])
@@ -51,8 +51,8 @@ def adder_page():
         sorted_list = sorted(player_output_list, reverse = True ,key=lambda x: x.playerCount)
 
         result = json.dumps([ob.__dict__ for ob in sorted_list])
-
-        return render_template("/result.html", value = result, squadLink = request.form["squadLink"])
+        result = json.loads(result)
+        return render_template("/result.html", results = result, squadLink = request.form["squadLink"])
         return '''
         <html>
                     <body>
@@ -62,14 +62,16 @@ def adder_page():
                     </body>
         </html>
             '''.format(result=result)
-    return '''
-        <html>
-            <body>
-                <p>Enter your FUTBIN SBC link:</p>
-                <form method="post" action=".">
-                    <p><input type = "text" name="squadLink" /></p>
-                    <p><input type="submit" value="Fetch Players" /></p>
-                </form>
-            </body>
-        </html>
-'''
+#     return '''
+#         <html>
+#             <body>
+#                 <p>Enter your FUTBIN SBC link:</p>
+#                 <form method="post" action=".">
+#                     <p><input type = "text" name="squadLink" /></p>
+#                     <p><input type="submit" value="Fetch Players" /></p>
+#                 </form>
+#             </body>
+#         </html>
+# '''
+    
+    return render_template("index.html")
