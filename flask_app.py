@@ -14,8 +14,6 @@ from processing import add_players_to_list
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
-if __name__ == '__main__':
-    app.run()
 
 @app.route("/", methods=["GET", "POST"])
 def adder_page():
@@ -25,13 +23,13 @@ def adder_page():
 
         scraped_player_list = []
         player_link_list = []
-        player_link_list={}
+        player_link_list = {}
 
-        pool = Pool(processes = len(squadLinks))
+        pool = Pool(processes=len(squadLinks))
         data = pool.map(find_squad_player_links, squadLinks)
         pool.close()
 
-        #Adding playerLists' to scraped_player_list (collated)
+        # Adding playerLists' to scraped_player_list (collated)
         for playerList in data:
             for player in playerList:
                 scraped_player_list.append(player)
@@ -40,7 +38,7 @@ def adder_page():
 
         temp_player_link_list = []
 
-        player_output_list=[]
+        player_output_list = []
 
         for player in scraped_player_list:
             if player.futBinURL in temp_player_link_list:
@@ -51,11 +49,12 @@ def adder_page():
                 player.set_playerCount(playerCount)
                 player_output_list.append(player)
 
-        sorted_list = sorted(player_output_list, reverse = True ,key=lambda x: x.playerCount)
+        sorted_list = sorted(player_output_list, reverse=True,
+                             key=lambda x: x.playerCount)
 
         result = json.dumps([ob.__dict__ for ob in sorted_list])
         result = json.loads(result)
-        return render_template("/result.html", results = result, squadLink = request.form["squadLink"])
+        return render_template("/result.html", results=result, squadLink=request.form["squadLink"])
         return '''
         <html>
                     <body>
@@ -76,5 +75,8 @@ def adder_page():
 #             </body>
 #         </html>
 # '''
-    
     return render_template("index.html")
+
+
+if __name__ == '__main__':
+    app.run()
