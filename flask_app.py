@@ -6,20 +6,16 @@ from multiprocessing import Pool
 
 import json
 
-from core import create_app
-
 from processing import get_squad_links
 from processing import find_squad_player_links
 from processing import add_players_to_list
 
+
+app = Flask(__name__)
+app.config["DEBUG"] = True
+
 if __name__ == '__main__':
     app.run()
-
-
-class Config:
-    DEBUG = True
-
-app = create_app(Config)
 
 @app.route("/", methods=["GET", "POST"])
 def adder_page():
