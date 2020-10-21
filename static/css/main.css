@@ -902,6 +902,10 @@ body.pricing-page {
     background-image: linear-gradient(to right, #479dab, #1a7abc);
 }
 
+.modal-body img{
+     max-width:100px;
+}
+
 .ads_banner {
     margin: 40px 0px;
 }
