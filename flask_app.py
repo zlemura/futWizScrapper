@@ -17,7 +17,6 @@ app.config["DEBUG"] = True
 
 @app.route("/", methods=["GET", "POST"])
 def adder_page():
-    app.title = "FUT Edge"
     if request.method == "POST":
 
         squadLinks = get_squad_links(request.form["squadLink"])
