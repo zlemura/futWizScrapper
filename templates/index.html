@@ -65,6 +65,7 @@
 	<div id="dropDownSelect1"></div>
 
 	<!-- Modal -->
+	<!--Old Modal
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -77,7 +78,24 @@
     </div>
   </div>
 </div>
-
+-->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-content">
+       <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+         <div>1. Visit the page for the SBC you wish to analyse, from the <a href = https://www.futbin.com/squad-building-challenges>FUTBIN SBC Page</a>.</div>
+         <img src="{{ url_for('static', filename='images/tutorial_1.PNG')}}">
+         <div>2. Apply any desired filters. You do not have to apply any filters.</div>
+         <img src="{{ url_for('static', filename='images/tutorial_2.PNG')}}">
+         <div>3. Copy the page URL, paste it in the link section and click 'Fetch Players'.</div>
+         <img src="{{ url_for('static', filename='images/tutorial_3.PNG')}}">
+       </div>
+     </div>
+   </div>
+ </div>
 	
 	
 <!--===============================================================================================-->
