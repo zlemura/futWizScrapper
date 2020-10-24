@@ -902,8 +902,8 @@ body.pricing-page {
     background-image: linear-gradient(to right, #479dab, #1a7abc);
 }
 
-.tutorial_img{
-     width: 100%;
+.tutorial_image{ 
+    max-width: 100%;
 }
 
 .ads_banner {
