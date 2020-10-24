@@ -43,6 +43,7 @@ def find_squad_player_links(link):
     except:
         return render_template("/errorPage.html")
     playerList = []
+    playerURLList = []
     for i in range(1, 12):
         # Fetch Card Link
         playerClassName = "cardlid" + str(i)
@@ -51,7 +52,18 @@ def find_squad_player_links(link):
         playerDivCardDetails_a = playerDivCardDetails.find('a')
 
         # Fetch Card Details
+        # Fetch URL
+        try:
+            playerLink = playerDivCardDetails_a['href']
+            playerURLList.append(playerLink)
+        except:
+            pass
         playerDivOtherDetails = playerDivCardDetails.find('div')
+
+        #Logic to remove duplicate players, stop spammers
+        if playerLink in playerURLList:
+            continue
+
         # name, club, league, nation, revision, level, position, futBinURL
         # Fetch Name
         playerName = playerDivOtherDetails['data-player-commom']
@@ -76,11 +88,7 @@ def find_squad_player_links(link):
         playerPositionDiv = playerDivOtherDetails.find(
             'div', class_="pcdisplay-pos")
         playerPosition = playerPositionDiv.text
-        # Fetch URL
-        try:
-            playerLink = playerDivCardDetails_a['href']
-        except:
-            pass
+
         # Add to playerList
         playerCount = 0
         playerList.append(Player(playerName, playerClub, playerLeague, playerNation,
@@ -113,8 +121,26 @@ def determine_player_revision_level(playerClass):
         playerRevision = 'Libertadores'
     elif 'icon' in playerClass:
         playerRevision = 'Icon'
+    elif 'halloween' in playerClass:
+        playerRevision = 'Rulebreakers'
+    elif 'ucl_rare' in playerClass:
+        playerRevision = 'UCL Rare'
+    elif 'ucl_non_rare' in playerClass:
+        playerRevision = 'UCL Non-Rare'
+    elif 'sbc_flashback' in playerClass:
+        playerRevision = 'Flashback'
+    elif 'potm_epl' in playerClass:
+        playerRevision = 'POTM EPL'
+    elif 'potm_bundesliga' in playerClass:
+        playerRevision = 'POTM Bundesliga'
+    elif 'potm_ligue1' in playerClass:
+        playerRevision = 'POTM Ligue 1'
+    elif 'potm_laliga' in playerClass:
+        playerRevision = 'POTM La Liga'
+    elif 'objective_reward' in playerClass:
+        playerRevision = 'Objectives'
 
-    # Determine Regular Revision
+        # Determine Regular Revision
     if playerRevision == '':
         if 'non-rare' in playerClass:
             playerRevision = 'Non-Rare'
