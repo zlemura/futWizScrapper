@@ -21,27 +21,25 @@ class Player:
 
 
 def get_squad_links(link):
-    try:
-        URL = link
-        page = requests.get(URL)
-        soup = BeautifulSoup(page.content, 'html.parser')
-    except:
-        return render_template("/errorPage.html")
+
+    URL = link
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, 'html.parser')
     squadLinks = []
     squadLinkAs = soup.find_all("a", class_="squad_url")
     for squadLink in squadLinkAs:
         squadLinks.append(squadLink['href'])
+
     return squadLinks
 
 
 def find_squad_player_links(link):
 
     URL = 'https://www.futbin.com/' + link
-    try:
-        page = requests.get(URL)
-        soup = BeautifulSoup(page.content, 'html.parser')
-    except:
-        return render_template("/errorPage.html")
+
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, 'html.parser')
+
     playerList = []
     playerURLList = []
     for i in range(1, 12):
@@ -55,7 +53,6 @@ def find_squad_player_links(link):
         # Fetch URL
         try:
             playerLink = playerDivCardDetails_a['href']
-            playerURLList.append(playerLink)
         except:
             pass
         playerDivOtherDetails = playerDivCardDetails.find('div')
@@ -93,6 +90,9 @@ def find_squad_player_links(link):
         playerCount = 0
         playerList.append(Player(playerName, playerClub, playerLeague, playerNation,
                                  playerRevision, playerLevel, playerPosition, 0, playerLink))
+
+        #Add Player URL to avoid duplicates
+        playerURLList.append(playerLink)
     return playerList
 
 

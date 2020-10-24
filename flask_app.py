@@ -21,7 +21,7 @@ def handle_exception(e):
 def adder_page():
     if request.method == "POST":
 
-        if not "https://www.futbin.com/squad-building-challenges/ALL/" in request.form["squadLink"]:
+        if not "https://www.futbin.com/squad-building-challenges/ALL" in request.form["squadLink"]:
             return render_template("/errorPage.html")
 
         squadLinks = get_squad_links(request.form["squadLink"])
