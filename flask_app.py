@@ -10,14 +10,19 @@ from processing import get_squad_links
 from processing import find_squad_player_links
 from processing import add_players_to_list
 
-
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+@app.errorhandler(Exception)
+def handle_exception(e):
+    return render_template("/errorPage.html")
 
 @app.route("/", methods=["GET", "POST"])
 def adder_page():
     if request.method == "POST":
+
+        if not "https://www.futbin.com/squad-building-challenges/ALL/" in request.form["squadLink"]:
+            return render_template("/errorPage.html")
 
         squadLinks = get_squad_links(request.form["squadLink"])
 

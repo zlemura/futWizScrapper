@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from flask import Flask, request, render_template
 
 
 class Player:
@@ -20,9 +21,12 @@ class Player:
 
 
 def get_squad_links(link):
-    URL = link
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, 'html.parser')
+    try:
+        URL = link
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, 'html.parser')
+    except:
+        return render_template("/errorPage.html")
     squadLinks = []
     squadLinkAs = soup.find_all("a", class_="squad_url")
     for squadLink in squadLinkAs:
@@ -31,9 +35,13 @@ def get_squad_links(link):
 
 
 def find_squad_player_links(link):
+
     URL = 'https://www.futbin.com/' + link
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, 'html.parser')
+    try:
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, 'html.parser')
+    except:
+        return render_template("/errorPage.html")
     playerList = []
     for i in range(1, 12):
         # Fetch Card Link
