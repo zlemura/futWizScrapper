@@ -21,13 +21,20 @@ def adder_page():
 
         squadLinks = get_squad_links(request.form["squadLink"])
 
+        #Check if results are empty
+        if len(squadLinks) == 0:
+            return render_template("/errorPage.html")
+
         scraped_player_list = []
         player_link_list = []
         player_link_list = {}
 
-        pool = Pool(processes=len(squadLinks))
-        data = pool.map(find_squad_player_links, squadLinks)
-        pool.close()
+        try:
+            pool = Pool(processes=len(squadLinks))
+            data = pool.map(find_squad_player_links, squadLinks)
+            pool.close()
+        except:
+            return render_template("/errorPage.html")
 
         # Adding playerLists' to scraped_player_list (collated)
         for playerList in data:

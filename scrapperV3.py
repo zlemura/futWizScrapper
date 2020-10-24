@@ -143,7 +143,11 @@ if __name__ == '__main__':
     print("Flow started at " + str(datetime.now()))
 
     squadLinks = get_squad_links(
-        "https://www.futbin.com/squad-building-challenges/ALL/68/Hakimi%20to%20Inter?page=1&lowest=xone")
+        "https://www.futbin.com/squad-building-challenges/ALL/115/Top%20Form")
+
+    if len(squadLinks) == 0:
+        print("An error has occured")
+        quit()
 
     print("Squad links found at " + str(datetime.now()))
 
