@@ -893,7 +893,7 @@ body.pricing-page {
     background-image: linear-gradient(to right, #479dab, #1a7abc);
 }
 
-.tutorial_image{ 
+.modal-body img{
     max-width: 100%;
 }
 
