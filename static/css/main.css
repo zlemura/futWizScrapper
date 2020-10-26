@@ -34,7 +34,6 @@ body, html {
   height: 100%;
   font-family: Poppins-Regular, sans-serif;
   background-color: #00000000;
-  overflow: hidden;
 }
 
 /*---------------------------------------------*/
@@ -915,13 +914,16 @@ body.pricing-page {
 /*---------------------------------------------*/
 /* Fixed/sticky icon bar (vertically aligned 50% from the top of the screen) */
 .icon-bar {
-
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 /* Style the icon bar links */
 .icon-bar a {
-  margin-left:auto;
-  margin-right:0;
+
 }
 
 /* Style the social media icons with color, if you want */

@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from flask import Flask, request, render_template
 
+from multiprocessing import Pool
 
 class Player:
 
@@ -34,7 +35,6 @@ def get_squad_links(link):
 
 
 def find_squad_player_links(link):
-
     URL = 'https://www.futbin.com/' + link
 
     page = requests.get(URL)
@@ -42,6 +42,7 @@ def find_squad_player_links(link):
 
     playerList = []
     playerURLList = []
+
     for i in range(1, 12):
         # Fetch Card Link
         playerClassName = "cardlid" + str(i)
@@ -57,7 +58,7 @@ def find_squad_player_links(link):
             pass
         playerDivOtherDetails = playerDivCardDetails.find('div')
 
-        #Logic to remove duplicate players, stop spammers
+        # Logic to remove duplicate players, stop spammers
         if playerLink in playerURLList:
             continue
 
@@ -91,7 +92,7 @@ def find_squad_player_links(link):
         playerList.append(Player(playerName, playerClub, playerLeague, playerNation,
                                  playerRevision, playerLevel, playerPosition, 0, playerLink))
 
-        #Add Player URL to avoid duplicates
+        # Add Player URL to avoid duplicates
         playerURLList.append(playerLink)
     return playerList
 
